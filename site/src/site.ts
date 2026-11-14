@@ -13,7 +13,7 @@ export const ui = {
     otherLang: "Slovensky",
     otherLangShort: "SK",
     intro:
-      "I write about how I divide code and decide where each part belongs. When designing code, I ask how much I will need to understand when the requirements change.",
+      "Essays on frontend code architecture: how I draw boundaries in TypeScript and React, so that a change needs only the code it touches.",
     minRead: (n: number) => `${n} min read`,
     contents: "Contents",
     nextArticle: "Next article",
@@ -35,7 +35,7 @@ export const ui = {
     otherLang: "English",
     otherLangShort: "EN",
     intro:
-      "Píšem o tom, ako rozdeľujem kód a podľa čoho sa rozhodujem, kde má ktorá časť patriť. Pri návrhu sa pýtam, koľko toho budem musieť pochopiť, keď sa zadanie zmení.",
+      "Texty o architektúre frontendového kódu: ako kreslím hranice v TypeScripte a Reacte, aby zmena potrebovala len kód, ktorého sa týka.",
     minRead: (n: number) => `${n} min čítania`,
     contents: "Obsah",
     nextArticle: "Ďalší článok",
