@@ -23,7 +23,7 @@ const nextLabel = articles[index + 1] ? t.nextArticle : t.previousArticle;
 const alternate = href(lang === "en" ? "sk" : "en", article.slug);
 ---
 
-<Base lang={lang} title={`${article.title} · ${author}`} description={article.description} alternate={alternate}>
+<Base lang={lang} title={`${article.title} · ${author}`} description={article.description} alternate={alternate} article={{ headline: article.title, date: article.date.toISOString().slice(0, 10) }}>
   <TopBar lang={lang} current="articles" alternate={alternate} />
   <main id="main">
     <article>

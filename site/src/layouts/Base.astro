@@ -7,9 +7,22 @@ interface Props {
   title: string;
   description?: string;
   alternate?: string;
+  article?: { headline: string; date: string };
 }
-const { lang, title, description, alternate } = Astro.props;
+const { lang, title, description, alternate, article } = Astro.props;
 const t = ui[lang];
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const alternateUrl = alternate && new URL(alternate, Astro.site).href;
+const articleData = article && JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: article.headline,
+  description,
+  datePublished: article.date,
+  author: { "@type": "Person", name: "Filip Mešša", url: "https://github.com/FilipMessa" },
+  mainEntityOfPage: canonical,
+  inLanguage: lang,
+}).replace(/</g, "\\u003c");
 ---
 
 <!doctype html>
@@ -19,9 +32,12 @@ const t = ui[lang];
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={canonical} />
     <meta name="theme-color" content="#ebebeb" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
-    {alternate && <link rel="alternate" hreflang={lang === "en" ? "sk" : "en"} href={alternate} />}
+    {alternateUrl && <link rel="alternate" hreflang={lang} href={canonical} />}
+    {alternateUrl && <link rel="alternate" hreflang={lang === "en" ? "sk" : "en"} href={alternateUrl} />}
+    {articleData && <script type="application/ld+json" set:html={articleData} />}
   </head>
   <body>
     <slot />
