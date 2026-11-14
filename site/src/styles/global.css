@@ -1,0 +1,1062 @@
+@import "@fontsource-variable/archivo/wdth.css";
+@import "@fontsource-variable/instrument-sans/wdth.css";
+@import "@fontsource-variable/instrument-sans/wght-italic.css";
+@import "@fontsource/instrument-serif/400.css";
+@import "@fontsource/instrument-serif/400-italic.css";
+@import "@fontsource-variable/jetbrains-mono/wght.css";
+
+:root {
+  --bg: #ebebeb;
+  --fg: #0a0a0a;
+  --muted: #595959;
+  --quiet: #b4b4b4;
+  --edge: rgba(0, 0, 0, 0.22);
+  --band: #dcdcdc;
+  --side: 340px;
+  --rule: #cdcdcd;
+  --pill: #d9d9d9;
+  --raised: #f6f6f6;
+  --code-bg: #f5f5f5;
+  --code-rule: #d4d4d4;
+  --diagram-label: #2e2e2e;
+  --invert-bg: #0a0a0a;
+  --invert-fg: #ebebeb;
+  --invert-muted: #8c8c8c;
+  --invert-rule: #2a2a2a;
+  --band-rule: #8f8f8f;
+
+  --serif: "Instrument Serif", "Times New Roman", serif;
+  --sans: "Instrument Sans Variable", system-ui, sans-serif;
+  --mark: "Archivo Variable", system-ui, sans-serif;
+  --mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  --margin: 64px;
+  --text: 640px;
+  --wide: 1000px;
+  --code-weight: 440;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0a0a0a;
+    --fg: #ebebeb;
+    --muted: #8f8f8f;
+    --quiet: #474747;
+    --edge: rgba(255, 255, 255, 0.14);
+    --band: #202020;
+    --rule: #363636;
+    --pill: #2e2e2e;
+    --code-weight: 400;
+    --raised: #141414;
+    --code-bg: #121212;
+    --code-rule: #262626;
+    --diagram-label: #bdbdbd;
+    --invert-bg: #000000;
+    --invert-fg: #ebebeb;
+    --invert-muted: #8c8c8c;
+    --invert-rule: #3a3a3a;
+    --band-rule: #4a4a4a;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0a0a0a;
+  --fg: #ebebeb;
+  --muted: #8f8f8f;
+  --quiet: #474747;
+  --edge: rgba(255, 255, 255, 0.14);
+  --band: #202020;
+  --rule: #363636;
+  --pill: #2e2e2e;
+  --code-weight: 400;
+  --raised: #141414;
+  --code-bg: #121212;
+  --code-rule: #262626;
+  --diagram-label: #bdbdbd;
+  --invert-bg: #000000;
+  --invert-fg: #ebebeb;
+  --invert-muted: #8c8c8c;
+  --invert-rule: #3a3a3a;
+  --band-rule: #4a4a4a;
+  color-scheme: dark;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --margin: 20px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 19px;
+  line-height: 1.6;
+  font-feature-settings: "kern", "liga";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 3px;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+}
+.skip:focus {
+  left: var(--margin);
+  top: 8px;
+  z-index: 10;
+}
+
+/* Top bar */
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  padding: 20px var(--margin) 0;
+  min-height: 52px;
+}
+
+.pills {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: var(--pill);
+  color: var(--fg);
+  font-size: 15px;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.pill:hover,
+.pill[aria-current="page"] {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.mark-small {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Home head: the name is the one display moment; the intro sits on its baseline */
+
+.home-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--side);
+  gap: 48px;
+  align-items: last baseline;
+  margin: 56px var(--margin) 0;
+}
+.home-head p {
+  margin: 0;
+  font-size: 23px;
+  line-height: 1.4;
+  text-wrap: pretty;
+}
+
+.wordmark {
+  display: block;
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  text-decoration: none;
+  line-height: 0.86;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  /* "Filip Mešša" is 3.48em wide at this tracking: on desktop the name spans
+     about 60% of the content width, on phones all of it. */
+  font-size: calc((100vw - 2 * var(--margin)) * 0.175);
+}
+
+/* Buttons */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  height: 48px;
+  padding: 0 22px;
+  border-radius: 999px;
+  background: var(--fg);
+  color: var(--bg);
+  font-size: 18px;
+  text-decoration: none;
+}
+.button:hover {
+  background: var(--muted);
+}
+.button--quiet {
+  background: var(--invert-fg);
+  color: var(--invert-bg);
+}
+.button--quiet:hover {
+  background: var(--invert-muted);
+}
+
+/* Home */
+
+.section {
+  margin: 96px var(--margin) 0;
+  border-top: 1px solid var(--rule);
+}
+.section-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.index {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--rule);
+}
+.index li + li {
+  border-top: 1px solid var(--rule);
+}
+.index a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--side);
+  gap: 48px;
+  align-items: first baseline;
+  padding: 28px 0 28px;
+  text-decoration: none;
+}
+.index h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(36px, 4vw, 58px);
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.index a:hover h3 {
+  color: var(--muted);
+}
+.index .lead p {
+  margin: 18px 0 0;
+  max-width: 46ch;
+  font-size: 20px;
+  line-height: 1.4;
+}
+.index .note {
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.index .note .meta::before {
+  content: "·";
+  margin: 0 8px;
+}
+
+/* Footer: one row, links and copyright */
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-top: 96px;
+  padding: 36px var(--margin);
+  border-top: 1px solid var(--invert-rule);
+  background: var(--invert-bg);
+  color: var(--invert-fg);
+}
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  font-size: 18px;
+}
+.footer-links a:not(.button) {
+  text-decoration: none;
+}
+.footer-links a:not(.button):hover {
+  color: var(--invert-muted);
+}
+.footer-copy {
+  font-size: 15px;
+  color: var(--invert-muted);
+}
+
+/* Article: the home grid, content left, metadata and contents in the side column */
+
+.article-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--side);
+  gap: 40px 48px;
+  align-items: first baseline;
+  padding: 120px var(--margin) 0;
+}
+.article-head .dek {
+  grid-column: 1;
+  margin: 0;
+  max-width: 34em;
+  font-size: 23px;
+  line-height: 1.4;
+  text-wrap: pretty;
+}
+.article-head h1 {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(52px, 8.6vw, 128px);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.article-head .meta {
+  grid-column: 2;
+  margin: 0;
+  font-size: 17px;
+  color: var(--muted);
+}
+.article-head .meta span::before {
+  content: "·";
+  margin: 0 8px;
+}
+
+.article-body {
+  --wide-w: min(var(--wide), calc(100vw - 2 * var(--margin)));
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0 48px;
+  margin: 80px var(--margin) 0;
+  padding-top: 96px;
+  border-top: 1px solid var(--rule);
+}
+
+.toc {
+  display: none;
+}
+.toc nav {
+  position: sticky;
+  top: 32px;
+}
+.toc h2,
+.toc-inline summary {
+  margin: 0 0 12px;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--muted);
+}
+.toc ol,
+.toc-inline ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 16px;
+  line-height: 1.35;
+}
+.toc li,
+.toc-inline li {
+  padding: 6px 0;
+}
+.toc a,
+.toc-inline a {
+  text-decoration: none;
+}
+.toc a:hover,
+.toc-inline a:hover {
+  color: var(--muted);
+}
+.toc ol a {
+  color: var(--muted);
+}
+.toc ol a:hover,
+.toc ol a[aria-current="true"] {
+  color: var(--fg);
+}
+/* The current section gets a short rule in the gutter; its width stays put. */
+.toc ol a {
+  position: relative;
+  display: block;
+}
+.toc ol a[aria-current="true"] {
+  font-weight: 560;
+}
+.toc li.step,
+.toc-inline li.step {
+  padding-left: 16px;
+}
+.toc nav:not(.steps-open) li.step {
+  display: none;
+}
+.toc li.step a[aria-current="true"]::before {
+  left: -44px;
+  width: 34px;
+}
+.toc ol a[aria-current="true"]::before {
+  content: "";
+  position: absolute;
+  top: 0.68em;
+  left: -28px;
+  width: 18px;
+  height: 1px;
+  background: var(--fg);
+}
+
+.toc-inline {
+  max-width: var(--text);
+  margin: 0 0 56px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inline summary {
+  display: flex;
+  min-height: 44px;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  margin: 0;
+  font-size: 17px;
+  color: var(--fg);
+  list-style: none;
+}
+.toc-inline summary::-webkit-details-marker {
+  display: none;
+}
+.toc-inline summary::after {
+  content: "+";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: var(--pill);
+  font-size: 18px;
+  line-height: 1;
+}
+.toc-inline[open] summary::after {
+  content: "\2212";
+}
+.toc-inline ol {
+  margin-top: 12px;
+}
+
+@media (min-width: 1240px) {
+  .article-body {
+    --wide-w: min(var(--wide), calc(100vw - 2 * var(--margin) - var(--side) - 64px));
+    grid-template-columns: minmax(0, 1fr) var(--side);
+  }
+  .toc {
+    display: block;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+  .toc-inline {
+    display: none;
+  }
+  /* The drawing fills its figure on the text measure. */
+  .prose .diagram--drawn svg {
+    max-width: none;
+  }
+}
+
+.prose {
+  max-width: var(--text);
+  min-width: 0;
+}
+
+.prose > p,
+.prose li {
+  text-wrap: pretty;
+}
+.prose p {
+  margin: 0 0 1.15em;
+}
+.prose h2 {
+  margin: 112px 0 28px;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 0.98;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  scroll-margin-top: 24px;
+}
+.prose > h2:first-child {
+  margin-top: 0;
+}
+.prose h3 {
+  margin: 72px 0 16px;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  scroll-margin-top: 24px;
+}
+.prose a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.prose a:hover {
+  color: var(--muted);
+}
+.prose strong {
+  font-weight: 600;
+}
+.prose ul,
+.prose ol {
+  margin: 0 0 1.15em;
+  padding-left: 1.2em;
+}
+.prose li {
+  margin: 0 0 0.45em;
+  padding-left: 0.2em;
+}
+.prose li::marker {
+  color: var(--muted);
+}
+
+/* The closing source list reads as ruled rows, like the home index. */
+.prose h2:is(#sources, #zdroje) + ul {
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--rule);
+}
+.prose h2:is(#sources, #zdroje) + ul li {
+  margin: 0;
+  padding: 16px 0;
+  border-top: 1px solid var(--rule);
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.prose code {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  font-variant-ligatures: none;
+}
+.prose :not(pre) > code {
+  padding: 0.08em 0.28em;
+  border-radius: 5px;
+  background: var(--band);
+  white-space: nowrap;
+}
+
+.prose pre,
+.prose table {
+  width: var(--wide-w);
+  max-width: none;
+}
+
+/* The band hangs left by its padding, so code starts on the text edge;
+   its right edge is the column edge, like tables and diagrams. */
+.prose pre {
+  margin-top: 48px;
+  margin-bottom: 48px;
+  padding: 28px 32px;
+  border-block: 1px solid var(--band-rule);
+  background: var(--band) !important;
+  font-size: 15px;
+  font-weight: var(--code-weight);
+  line-height: 1.65;
+  overflow-x: auto;
+  tab-size: 2;
+}
+.prose pre code {
+  font-size: inherit;
+}
+
+.prose blockquote {
+  margin: 96px 0;
+  padding: 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 44px;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.prose blockquote p {
+  margin: 0;
+}
+
+.prose table {
+  margin-top: 48px;
+  margin-bottom: 48px;
+  border-collapse: collapse;
+  font-size: 16px;
+  line-height: 1.45;
+}
+.prose th {
+  padding: 0 20px 12px 0;
+  border-bottom: 1px solid var(--fg);
+  font-weight: 560;
+  color: var(--fg);
+  text-align: left;
+}
+.prose td {
+  padding: 16px 20px 16px 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+.prose td:first-child {
+  font-weight: 560;
+  white-space: nowrap;
+}
+.prose table:has(th:nth-child(3):last-child) {
+  table-layout: fixed;
+}
+.prose table:has(th:nth-child(3):last-child) th:nth-child(1) { width: 30%; }
+.prose table:has(th:nth-child(3):last-child) th:nth-child(2) { width: 37%; }
+.prose table:has(th:nth-child(3):last-child) td:first-child { white-space: normal; }
+
+
+/* Code colors: both themes are in the markup, the scheme picks one */
+
+.astro-code,
+.astro-code span {
+  color: var(--shiki-light);
+  font-style: var(--shiki-light-font-style);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .astro-code,
+  :root:not([data-theme="light"]) .astro-code span {
+    color: var(--shiki-dark);
+    font-style: var(--shiki-dark-font-style);
+  }
+}
+:root[data-theme="dark"] .astro-code,
+:root[data-theme="dark"] .astro-code span {
+  color: var(--shiki-dark);
+  font-style: var(--shiki-dark-font-style);
+}
+
+/* Mermaid diagrams, rendered at build time as inline SVG */
+
+.prose .diagram {
+  width: auto;
+  margin: 64px 0;
+}
+/* Code and drawn diagrams share one figure surface. */
+.prose .diagram--drawn {
+  --node-bg: var(--bg);
+  --diagram-label: var(--fg);
+  padding: 40px 32px;
+  border-block: 1px solid var(--band-rule);
+  background: var(--band);
+}
+.prose svg[id^="mermaid"] rect {
+  rx: 0;
+  ry: 0;
+}
+.prose svg[id^="mermaid"] {
+  display: block;
+  height: auto;
+  margin: 0;
+}
+.prose svg[id^="mermaid"] .node rect,
+.prose svg[id^="mermaid"] .node polygon,
+.prose svg[id^="mermaid"] .node path,
+.prose svg[id^="mermaid"] rect.basic,
+.prose svg[id^="mermaid"] .stateGroup rect {
+  fill: var(--node-bg, var(--raised)) !important;
+  stroke: var(--fg) !important;
+  stroke-width: 1px !important;
+}
+.prose svg[id^="mermaid"] .nodeLabel,
+.prose svg[id^="mermaid"] .edgeLabel,
+.prose svg[id^="mermaid"] text,
+.prose svg[id^="mermaid"] span {
+  color: var(--fg) !important;
+  fill: var(--fg) !important;
+}
+.prose svg[id^="mermaid"] .edgeLabel,
+.prose svg[id^="mermaid"] .edgeLabel p,
+.prose svg[id^="mermaid"] .edgeLabel rect,
+.prose svg[id^="mermaid"] .labelBkg {
+  background: var(--diagram-bg, var(--bg)) !important;
+  background-color: var(--diagram-bg, var(--bg)) !important;
+  fill: var(--diagram-bg, var(--bg)) !important;
+}
+.prose svg[id^="mermaid"] .edgeLabel,
+.prose svg[id^="mermaid"] .edgeLabel span,
+.prose svg[id^="mermaid"] .edgeLabel p {
+  color: var(--diagram-label) !important;
+  fill: var(--diagram-label) !important;
+}
+.prose svg[id^="mermaid"] .flowchart-link,
+.prose svg[id^="mermaid"] .transition,
+.prose svg[id^="mermaid"] path.relation {
+  stroke: var(--fg) !important;
+  stroke-width: 1.25px !important;
+}
+.prose svg[id^="mermaid"] marker path,
+.prose svg[id^="mermaid"] .marker {
+  fill: var(--fg) !important;
+  stroke: var(--fg) !important;
+}
+.prose svg[id^="mermaid"] circle.state-start,
+.prose svg[id^="mermaid"] .start-state {
+  fill: var(--fg) !important;
+  stroke: var(--fg) !important;
+}
+
+.prose .diagram--drawn svg {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+  overflow: visible;
+}
+.prose .diagram--drawn .state-diagram--narrow {
+  display: none;
+}
+.state-diagram .sd-node {
+  fill: var(--node-bg, var(--raised));
+  stroke: var(--fg);
+  stroke-width: 1.5px;
+}
+.state-diagram .sd-edge {
+  fill: none;
+  stroke: var(--fg);
+  stroke-width: 1.5px;
+  stroke-linejoin: round;
+}
+.state-diagram .sd-head,
+.state-diagram .sd-start {
+  fill: var(--fg);
+}
+.state-diagram .sd-name {
+  font-family: var(--sans);
+  font-size: 17px;
+  fill: var(--fg);
+}
+.state-diagram .sd-label {
+  font-family: var(--sans);
+  font-size: 15.5px;
+  fill: var(--diagram-label);
+}
+.state-diagram--narrow .sd-label {
+  font-size: 15px;
+}
+
+/* After the article */
+
+.next {
+  margin: 128px var(--margin) 0;
+  border-top: 1px solid var(--rule);
+}
+.next a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--side);
+  gap: 8px 48px;
+  padding: 24px 0 0;
+  text-decoration: none;
+}
+.next .label {
+  font-size: 17px;
+  color: var(--muted);
+}
+.next h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(36px, 4vw, 58px);
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+}
+.next .label {
+  grid-column: 1;
+  padding-bottom: 4px;
+}
+.next h2 {
+  grid-column: 1;
+}
+.next a:hover h2 {
+  color: var(--muted);
+}
+
+/* About */
+
+.about-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 30rem;
+  gap: 32px 48px;
+  align-items: last baseline;
+  padding: 112px var(--margin) 0;
+}
+.about-head h1 {
+  grid-column: 1;
+  grid-row: 1;
+}
+.about-head p {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+.about-head .button {
+  grid-column: 2;
+  justify-self: start;
+}
+.about-head h1 {
+  margin: 0;
+  max-width: 12ch;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(52px, 8.4vw, 124px);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.thesis {
+  margin: 120px var(--margin) 0;
+  padding-top: 32px;
+  border-top: 1px solid var(--rule);
+}
+.thesis blockquote {
+  margin: 0;
+  max-width: 24ch;
+  font-family: var(--serif);
+  font-size: clamp(40px, 4.6vw, 64px);
+  line-height: 0.96;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.thesis figcaption {
+  margin-top: 32px;
+  font-size: 19px;
+  color: var(--muted);
+}
+.thesis figcaption a {
+  color: var(--fg);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.thesis figcaption a:hover {
+  color: var(--muted);
+}
+
+/* Small screens */
+
+@media (max-width: 760px) {
+  body {
+    font-size: 17.5px;
+  }
+  .topbar .mark-small {
+    font-size: 24px;
+  }
+  .topbar .pills {
+    gap: 6px;
+  }
+  .topbar .pill {
+    padding: 0 13px;
+    font-size: 14px;
+  }
+  .pill {
+    height: 44px;
+    padding: 0 16px;
+    font-size: 15px;
+  }
+  .home-head {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-top: 36px;
+  }
+  .home-head p {
+    font-size: 20px;
+  }
+  .wordmark {
+    font-size: calc((100vw - 2 * var(--margin)) * 0.2865);
+  }
+  .section {
+    margin-top: 56px;
+  }
+  .index {
+    margin-top: 32px;
+  }
+  .index a {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 20px 0 32px;
+  }
+  .index .note {
+    padding: 0;
+    font-size: 16px;
+  }
+  .index .lead p {
+    margin-top: 12px;
+    font-size: 18px;
+  }
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+    margin-top: 112px;
+    padding: 32px var(--margin);
+  }
+  .footer-links {
+    flex-wrap: wrap;
+    gap: 16px 24px;
+  }
+  .article-head {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-top: 64px;
+  }
+  .article-head h1,
+  .article-head .dek,
+  .article-head .meta {
+    grid-column: 1;
+  }
+  .article-head .dek {
+    font-size: 20px;
+  }
+  .article-head .meta {
+    padding: 0;
+    font-size: 16px;
+  }
+  .article-body {
+    margin-top: 48px;
+    padding-top: 0;
+    border-top: 0;
+  }
+  .toc-inline {
+    border-top: 1px solid var(--rule);
+    padding-top: 14px;
+  }
+  .prose h2 {
+    margin-top: 88px;
+    font-size: 44px;
+  }
+  .prose h3 {
+    font-size: 30px;
+  }
+  .prose pre,
+  .prose .diagram {
+    width: auto;
+    margin: 36px calc(-1 * var(--margin)) !important;
+    padding: 20px var(--margin);
+    border: 0;
+    overflow-x: auto;
+    background:
+      linear-gradient(90deg, var(--band) 40%, transparent) left / 56px 100% no-repeat local,
+      linear-gradient(270deg, var(--band) 40%, transparent) right / 56px 100% no-repeat local,
+      linear-gradient(90deg, var(--edge), transparent) left / 28px 100% no-repeat scroll,
+      linear-gradient(270deg, var(--edge), transparent) right / 28px 100% no-repeat scroll,
+      var(--band) !important;
+  }
+  .prose pre {
+    font-size: 13.5px;
+  }
+  .prose .diagram {
+    --diagram-bg: var(--band);
+    --node-bg: var(--bg);
+  }
+  .prose table {
+    display: block;
+    width: auto;
+    margin: 36px calc(-1 * var(--margin));
+    padding: 0 var(--margin);
+    overflow-x: auto;
+    font-size: 15px;
+  }
+  .prose td:first-child {
+    white-space: normal;
+    min-width: 120px;
+  }
+  .prose th:first-child,
+  .prose td:first-child {
+    padding-left: 0;
+  }
+  .about-head p {
+    font-size: 20px;
+  }
+  .prose blockquote {
+    margin: 56px 0;
+    font-size: 34px;
+  }
+
+  .prose svg[id^="mermaid"] {
+    min-width: 520px;
+  }
+  .prose .diagram--drawn .state-diagram--wide {
+    display: none;
+  }
+  .prose .diagram--drawn .state-diagram--narrow {
+    display: block;
+    max-width: 400px;
+  }
+  .next {
+    margin-top: 112px;
+  }
+  .next a {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .next .label {
+    grid-column: 1;
+    padding: 0;
+  }
+  .about-head {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-top: 64px;
+  }
+  .about-head > * {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+  .thesis {
+    margin-top: 72px;
+  }
+}

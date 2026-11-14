@@ -1,0 +1,86 @@
+---
+import { render } from "astro:content";
+import Base from "../layouts/Base.astro";
+import TopBar from "./TopBar.astro";
+import Footer from "./Footer.astro";
+import { ui, href, author, getArticles, formatDate, type Lang, type Article } from "../site";
+
+interface Props {
+  lang: Lang;
+  article: Article;
+}
+const { lang, article } = Astro.props;
+const t = ui[lang];
+const articles = await getArticles(lang);
+const { Content, headings } = await render(article.entry);
+// The numbered steps are one method, so the contents list nests them.
+const toc = headings
+  .filter((h) => h.depth === 2)
+  .map((h) => ({ ...h, step: /^(Step|Krok) \d+:/.test(h.text) }));
+const index = articles.findIndex((a) => a.slug === article.slug);
+const next = articles[index + 1] ?? articles[index - 1];
+const nextLabel = articles[index + 1] ? t.previousArticle : t.nextArticle;
+const alternate = href(lang === "en" ? "sk" : "en", article.slug);
+---
+
+<Base lang={lang} title={`${article.title} · ${author}`} description={article.description} alternate={alternate}>
+  <TopBar lang={lang} current="articles" alternate={alternate} />
+  <main id="main">
+    <article>
+      <header class="article-head">
+        <h1>{article.title}</h1>
+        {article.description && <p class="dek">{article.description}</p>}
+        <p class="meta">
+          <time datetime={article.date.toISOString().slice(0, 10)}>{formatDate(article.date, lang)}</time>
+          <span>{t.minRead(article.minutes)}</span>
+        </p>
+      </header>
+      <div class="article-body">
+        <details class="toc-inline">
+          <summary>{t.contents}</summary>
+          <ol>{toc.map((h) => <li class:list={{ step: h.step }}><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
+        </details>
+        <div class="prose">
+          <Content />
+        </div>
+        <aside class="toc">
+          <nav aria-labelledby="toc-title">
+            <h2 id="toc-title">{t.contents}</h2>
+            <ol>{toc.map((h) => <li class:list={{ step: h.step }}><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
+          </nav>
+        </aside>
+      </div>
+    </article>
+    {
+      next && (
+        <nav class="next" aria-label={nextLabel}>
+          <a href={href(lang, next.slug)}>
+            <span class="label">{nextLabel}</span>
+            <h2>{next.title}</h2>
+          </a>
+        </nav>
+      )
+    }
+  </main>
+  <Footer lang={lang} />
+  <script>
+    // Marks the contents entry of the section being read. No motion, only a state change.
+    const links = new Map(
+      [...document.querySelectorAll<HTMLAnchorElement>(".toc ol a")].map((a) => [a.hash.slice(1), a]),
+    );
+    const headings = [...document.querySelectorAll<HTMLElement>(".prose h2[id]")];
+    const nav = document.querySelector<HTMLElement>(".toc nav");
+    // The nested steps show while the reader is in the method or one of its steps.
+    const opensSteps = (li: Element | null | undefined) =>
+      !!li && (li.classList.contains("step") || !!li.nextElementSibling?.classList.contains("step"));
+    const mark = () => {
+      const current = headings.filter((h) => h.getBoundingClientRect().top < window.innerHeight * 0.3).pop();
+      links.forEach((a, id) => a.setAttribute("aria-current", String(id === current?.id)));
+      nav?.classList.toggle("steps-open", opensSteps(current && links.get(current.id)?.parentElement));
+    };
+    if (links.size) {
+      addEventListener("scroll", mark, { passive: true });
+      mark();
+    }
+  </script>
+</Base>

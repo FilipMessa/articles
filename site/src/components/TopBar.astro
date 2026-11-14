@@ -1,0 +1,21 @@
+---
+import { ui, href, author, type Lang } from "../site";
+
+interface Props {
+  lang: Lang;
+  current?: "articles" | "about";
+  alternate: string;
+  showMark?: boolean;
+}
+const { lang, current, alternate, showMark = true } = Astro.props;
+const t = ui[lang];
+---
+
+<a class="skip" href="#main">{lang === "sk" ? "Preskočiť na obsah" : "Skip to content"}</a>
+<header class="topbar">
+  {showMark ? <a class="mark-small" href={href(lang)}>{author}</a> : <span />}
+  <ul class="pills">
+    <li class="nav"><a class="pill" href={href(lang)} aria-current={current === "articles" ? "page" : undefined}>{t.articles}</a></li>
+    <li><a class="pill" href={alternate} hreflang={lang === "en" ? "sk" : "en"} lang={lang === "en" ? "sk" : "en"} aria-label={t.otherLang}>{t.otherLangShort}</a></li>
+  </ul>
+</header>

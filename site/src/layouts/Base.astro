@@ -1,0 +1,29 @@
+---
+import "../styles/global.css";
+import { ui, type Lang } from "../site";
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description?: string;
+  alternate?: string;
+}
+const { lang, title, description, alternate } = Astro.props;
+const t = ui[lang];
+---
+
+<!doctype html>
+<html lang={t.htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <meta name="theme-color" content="#ebebeb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+    {alternate && <link rel="alternate" hreflang={lang === "en" ? "sk" : "en"} href={alternate} />}
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

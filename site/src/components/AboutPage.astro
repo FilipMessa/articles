@@ -1,0 +1,36 @@
+---
+import Base from "../layouts/Base.astro";
+import TopBar from "./TopBar.astro";
+import Footer from "./Footer.astro";
+import { ui, href, aboutHref, author, getArticles, type Lang } from "../site";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang];
+const source = (await getArticles(lang)).find((a) => a.slug === "how-i-think-about-good-code-architecture");
+const alternate = aboutHref(lang === "en" ? "sk" : "en");
+---
+
+<Base lang={lang} title={`${t.about} · ${author}`} description={t.aboutIntro} alternate={alternate}>
+  <TopBar lang={lang} current="about" alternate={alternate} />
+  <main id="main">
+    <header class="about-head">
+      <h1>{t.aboutStatement}</h1>
+      <p>{t.aboutIntro}</p>
+      <a class="button" href={href(lang)}>{t.readArticles} <span aria-hidden="true">→</span></a>
+    </header>
+    <figure class="thesis">
+      <blockquote>{t.question}</blockquote>
+      {
+        source && (
+          <figcaption>
+            {t.questionSource} <a href={href(lang, source.slug)}>{source.title}</a>
+          </figcaption>
+        )
+      }
+    </figure>
+  </main>
+  <Footer lang={lang} />
+</Base>
