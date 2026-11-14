@@ -19,7 +19,7 @@ const toc = headings
   .map((h) => ({ ...h, step: /^(Step|Krok) \d+:/.test(h.text) }));
 const index = articles.findIndex((a) => a.slug === article.slug);
 const next = articles[index + 1] ?? articles[index - 1];
-const nextLabel = articles[index + 1] ? t.previousArticle : t.nextArticle;
+const nextLabel = articles[index + 1] ? t.nextArticle : t.previousArticle;
 const alternate = href(lang === "en" ? "sk" : "en", article.slug);
 ---
 
