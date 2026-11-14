@@ -416,7 +416,8 @@ a {
   color: var(--muted);
 }
 .toc ol a:hover,
-.toc ol a[aria-current="true"] {
+.toc ol a[aria-current="location"],
+.toc-inline ol a[aria-current="location"] {
   color: var(--fg);
 }
 /* The current section gets a short rule in the gutter; its width stays put. */
@@ -424,8 +425,12 @@ a {
   position: relative;
   display: block;
 }
-.toc ol a[aria-current="true"] {
-  font-weight: 560;
+.toc ol a[aria-current="location"],
+.toc-inline ol a[aria-current="location"] {
+  color: var(--fg);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 .toc li.step,
 .toc-inline li.step {
@@ -434,17 +439,17 @@ a {
 .toc nav:not(.steps-open) li.step {
   display: none;
 }
-.toc li.step a[aria-current="true"]::before {
+.toc li.step a[aria-current="location"]::before {
   left: -44px;
   width: 34px;
 }
-.toc ol a[aria-current="true"]::before {
+.toc ol a[aria-current="location"]::before {
   content: "";
   position: absolute;
   top: 0.68em;
   left: -28px;
   width: 18px;
-  height: 1px;
+  height: 2px;
   background: var(--fg);
 }
 

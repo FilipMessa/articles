@@ -65,9 +65,7 @@ const alternate = href(lang === "en" ? "sk" : "en", article.slug);
   <Footer lang={lang} />
   <script>
     // Marks the contents entry of the section being read. No motion, only a state change.
-    const links = new Map(
-      [...document.querySelectorAll<HTMLAnchorElement>(".toc ol a")].map((a) => [a.hash.slice(1), a]),
-    );
+    const links = [...document.querySelectorAll<HTMLAnchorElement>(".toc ol a, .toc-inline ol a")];
     const headings = [...document.querySelectorAll<HTMLElement>(".prose h2[id]")];
     const nav = document.querySelector<HTMLElement>(".toc nav");
     // The nested steps show while the reader is in the method or one of its steps.
@@ -75,10 +73,13 @@ const alternate = href(lang === "en" ? "sk" : "en", article.slug);
       !!li && (li.classList.contains("step") || !!li.nextElementSibling?.classList.contains("step"));
     const mark = () => {
       const current = headings.filter((h) => h.getBoundingClientRect().top < window.innerHeight * 0.3).pop();
-      links.forEach((a, id) => a.setAttribute("aria-current", String(id === current?.id)));
-      nav?.classList.toggle("steps-open", opensSteps(current && links.get(current.id)?.parentElement));
+      links.forEach((a) => {
+        if (decodeURIComponent(a.hash.slice(1)) === current?.id) a.setAttribute("aria-current", "location");
+        else a.removeAttribute("aria-current");
+      });
+      nav?.classList.toggle("steps-open", opensSteps(current && links.find((a) => decodeURIComponent(a.hash.slice(1)) === current.id)?.parentElement));
     };
-    if (links.size) {
+    if (links.length) {
       addEventListener("scroll", mark, { passive: true });
       mark();
     }
