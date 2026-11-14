@@ -13,7 +13,7 @@ export const ui = {
     otherLang: "Slovensky",
     otherLangShort: "SK",
     intro:
-      "Essays on frontend code architecture: how I draw boundaries in TypeScript and React, so that a change needs only the code it touches.",
+      "I write about how I divide code and decide where each part belongs. When designing code, I ask how much I will need to understand when the requirements change.",
     minRead: (n: number) => `${n} min read`,
     contents: "Contents",
     nextArticle: "Next article",
@@ -23,7 +23,7 @@ export const ui = {
     readArticles: "Read the articles",
     aboutStatement: "I write about code that is easy to change.",
     aboutIntro:
-      "I’m Filip Mešša, a frontend developer. I write about how to design boundaries in TypeScript and React code so that a change needs only the context it touches. Every article comes in English and Slovak, and each one comes back to one question.",
+      "I’m Filip Mešša. I’ve spent more than ten years building web products, mostly on the frontend. I’ve worked on George at Erste Digital, products at Kiwi.com, and transcription software at Parrot.\n\nI work mostly with TypeScript and React. I also use Claude Code and Codex every day.\n\nI write about the decisions I make while building software. I’m interested in when splitting code helps and when it adds more work than it saves. I try to explain my thinking through examples.",
     question: "Is the context this change requires proportionate to what we’re changing?",
     questionSource: "The question behind",
     dateLocale: "en-US",
@@ -35,7 +35,7 @@ export const ui = {
     otherLang: "English",
     otherLangShort: "EN",
     intro:
-      "Texty o architektúre frontendového kódu: ako kreslím hranice v TypeScripte a Reacte, aby zmena potrebovala len kód, ktorého sa týka.",
+      "Píšem o tom, ako rozdeľujem kód a podľa čoho sa rozhodujem, kde má ktorá časť patriť. Pri návrhu sa pýtam, koľko toho budem musieť pochopiť, keď sa zadanie zmení.",
     minRead: (n: number) => `${n} min čítania`,
     contents: "Obsah",
     nextArticle: "Ďalší článok",
@@ -45,7 +45,7 @@ export const ui = {
     readArticles: "Čítať články",
     aboutStatement: "Píšem o kóde, ktorý sa dá ľahko meniť.",
     aboutIntro:
-      "Som Filip Mešša, frontendový vývojár. Píšem o tom, ako navrhovať hranice v kóde v TypeScripte a Reacte, aby zmena potrebovala len kontext, ktorého sa týka. Každý článok vychádza po anglicky aj po slovensky a každý sa vracia k jednej otázke.",
+      "Som Filip Mešša. Vyše desať rokov vyvíjam webové produkty, najviac vo frontende. Pracoval som na Georgeovi v Erste Digital, produktoch Kiwi.com aj softvéri na prepis nahrávok v Parrote.\n\nNajčastejšie používam TypeScript a React. Pri práci denne používam aj Claude Code a Codex.\n\nNa tomto webe píšem o rozhodnutiach, ktoré pri vývoji robím. Zaujíma ma, kedy rozdelenie kódu pomôže a kedy pridá viac práce, než ušetrí. Svoje úvahy skúšam vysvetliť na príkladoch.",
     question: "Je kontext potrebný na túto zmenu primeraný tomu, čo meníme?",
     questionSource: "Otázka, na ktorej stojí článok",
     dateLocale: "sk-SK",

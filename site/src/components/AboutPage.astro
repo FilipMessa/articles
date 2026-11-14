@@ -18,7 +18,7 @@ const alternate = aboutHref(lang === "en" ? "sk" : "en");
   <main id="main">
     <header class="about-head">
       <h1>{t.aboutStatement}</h1>
-      <p>{t.aboutIntro}</p>
+      {t.aboutIntro.split("\n\n").map((paragraph) => <p>{paragraph}</p>)}
       <a class="button" href={href(lang)}>{t.readArticles} <span aria-hidden="true">→</span></a>
     </header>
     <figure class="thesis">
