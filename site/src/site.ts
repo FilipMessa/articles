@@ -69,7 +69,7 @@ const meta: Record<string, { date: string; description: Record<Lang, string> }> 
     },
   },
 };
-const order = Object.keys(meta);
+const order = ["how-i-think-about-good-code-architecture", "when-extracting-a-function-makes-sense"];
 
 export type Article = {
   entry: CollectionEntry<"articles">;
