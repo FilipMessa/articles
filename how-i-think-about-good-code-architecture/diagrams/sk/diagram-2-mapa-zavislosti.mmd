@@ -1,0 +1,7 @@
+flowchart TB
+    G["Komponent Gallery"] -->|"závisí od"| K["Kontrakt rozhrania<br/>(GalleryProps)"]
+    C["Coordinator<br/>(useGallery)"] -->|"napĺňa"| K
+    C -->|"používa"| CAP["Capabilities"]
+    C -->|"stavia na"| F["Mechanizmy frameworku<br/>(useState, query knižnica)"]
+    CAP -->|"používa"| R["Business pravidlá"]
+    CAP -->|"používa"| D["Prístup k dátam"]

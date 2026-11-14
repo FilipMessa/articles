@@ -1,0 +1,4 @@
+flowchart TB
+    A["Business pravidlo<br/>DeletionBlocker"] --> B["Serverová capability<br/>+ ImageNotFound"]
+    B --> C["Klient<br/>+ NetworkFailure<br/>+ UnexpectedFailure"]
+    C --> D["Kontrakt rozhrania<br/>DeleteImageError = všetky štyri"]

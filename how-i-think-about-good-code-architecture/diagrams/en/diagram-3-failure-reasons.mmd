@@ -1,0 +1,4 @@
+flowchart TB
+    A["Business rule<br/>DeletionBlocker"] --> B["Server capability<br/>+ ImageNotFound"]
+    B --> C["Client<br/>+ NetworkFailure<br/>+ UnexpectedFailure"]
+    C --> D["Interface contract<br/>DeleteImageError = all four"]

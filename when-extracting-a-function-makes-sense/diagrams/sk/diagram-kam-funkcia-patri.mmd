@@ -1,0 +1,8 @@
+flowchart TD
+    A(["Pomocná funkcia"]) --> B{{"Pozná doménu?"}}
+    B -->|"áno"| C{{"Potrebuje ju<br/>viac capabilities?"}}
+    C -->|"nie"| D["Nechať pri capability,<br/>ku ktorej patrí"]
+    C -->|"áno"| E["Modul domény"]
+    B -->|"nie"| F{{"Naozaj ju používa<br/>viac miest?"}}
+    F -->|"nie"| G["Nechať pri mieste použitia"]
+    F -->|"áno"| H["Zdieľané pomocné funkcie<br/>(shared / utils)"]

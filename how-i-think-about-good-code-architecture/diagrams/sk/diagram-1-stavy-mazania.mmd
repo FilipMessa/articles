@@ -1,0 +1,9 @@
+stateDiagram-v2
+    [*] --> idle
+    idle --> confirming: onRequestDelete
+    confirming --> idle: onCancelDelete
+    confirming --> deleting: onConfirmDelete
+    deleting --> idle: úspech
+    deleting --> failed: zlyhanie
+    failed --> idle: onDismissFailure
+    failed --> confirming: onRequestDelete

@@ -1,0 +1,8 @@
+flowchart TD
+    A(["Helper function"]) --> B{{"Does it know the domain?"}}
+    B -->|"yes"| C{{"Is it needed by<br/>several capabilities?"}}
+    C -->|"no"| D["Keep it next to the capability<br/>it belongs to"]
+    C -->|"yes"| E["Domain module"]
+    B -->|"no"| F{{"Is it really used<br/>in several places?"}}
+    F -->|"no"| G["Keep it at the call site"]
+    F -->|"yes"| H["Shared utilities<br/>(shared / utils)"]

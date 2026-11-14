@@ -1,0 +1,7 @@
+flowchart TB
+    G["Gallery component"] -->|"depends on"| K["Interface contract<br/>(GalleryProps)"]
+    C["Coordinator<br/>(useGallery)"] -->|"fulfills"| K
+    C -->|"uses"| CAP["Capabilities"]
+    C -->|"builds on"| F["Framework mechanisms<br/>(useState, query library)"]
+    CAP -->|"uses"| R["Business rules"]
+    CAP -->|"uses"| D["Data access"]
