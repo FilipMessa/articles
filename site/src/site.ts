@@ -62,7 +62,7 @@ const meta: Record<string, { date: string; description: Record<Lang, string> }> 
     },
   },
   "how-i-think-about-good-code-architecture": {
-    date: "2026-11-14",
+    date: "2026-11-12",
     description: {
       en: "One requirement, two designs, and the question I judge both by.",
       sk: "Jedna požiadavka, dva návrhy a otázka, podľa ktorej ich posudzujem.",
