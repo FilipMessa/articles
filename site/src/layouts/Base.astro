@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import { ui, type Lang } from "../site";
+import { goatcounterCode, ui, type Lang } from "../site";
 
 interface Props {
   lang: Lang;
@@ -37,6 +37,14 @@ const articleData = article && JSON.stringify({
     <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
     {alternateUrl && <link rel="alternate" hreflang={lang} href={canonical} />}
     {alternateUrl && <link rel="alternate" hreflang={lang === "en" ? "sk" : "en"} href={alternateUrl} />}
+    {goatcounterCode && import.meta.env.PROD && (
+      <script
+        is:inline
+        async
+        data-goatcounter={`https://${goatcounterCode}.goatcounter.com/count`}
+        src="https://gc.zgo.at/count.js"
+      />
+    )}
     {articleData && <script type="application/ld+json" set:html={articleData} />}
   </head>
   <body>

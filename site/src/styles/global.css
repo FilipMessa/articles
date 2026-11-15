@@ -1065,3 +1065,41 @@ a {
     margin-top: 72px;
   }
 }
+
+/* Privacy notice */
+
+.legal {
+  max-width: 44rem;
+  padding: 112px var(--margin) 0;
+}
+.legal h1 {
+  margin: 0 0 40px;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(44px, 6vw, 84px);
+  line-height: 0.96;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.legal h2 {
+  margin: 40px 0 8px;
+  font-size: 20px;
+}
+.legal p,
+.legal li {
+  font-size: 18px;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+.legal p {
+  margin: 0 0 12px;
+}
+.legal ul {
+  margin: 0 0 12px;
+  padding-left: 1.2em;
+}
+.legal .updated {
+  margin-top: 40px;
+  color: var(--muted);
+  font-size: 15px;
+}

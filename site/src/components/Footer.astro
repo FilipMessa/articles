@@ -1,5 +1,5 @@
 ---
-import { ui, author, githubUrl, type Lang } from "../site";
+import { ui, author, githubUrl, privacyHref, type Lang } from "../site";
 
 interface Props {
   lang: Lang;
@@ -11,6 +11,7 @@ const t = ui[lang];
 <footer class="footer">
   <nav class="footer-links" aria-label={t.elsewhere}>
     <a href={githubUrl}>GitHub</a>
+    <a href={privacyHref(lang)}>{t.privacy}</a>
   </nav>
   <span class="footer-copy">© 2026 {author}</span>
 </footer>

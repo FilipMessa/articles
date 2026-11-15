@@ -1,0 +1,113 @@
+---
+import Base from "../layouts/Base.astro";
+import TopBar from "./TopBar.astro";
+import Footer from "./Footer.astro";
+import { ui, author, contactEmail, privacyHref, type Lang } from "../site";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang];
+const alternate = privacyHref(lang === "en" ? "sk" : "en");
+const policy = "https://www.goatcounter.com/privacy";
+const mail = `mailto:${contactEmail}`;
+
+const copy = {
+  en: {
+    title: "Privacy",
+    description: "How this site measures visits, and what data that involves.",
+    sections: [
+      { h: "Who is responsible", p: [`${author}, an individual. Contact: `], mail: true },
+      {
+        h: "What I measure",
+        p: [
+          "I count visits to see which articles are read. I use GoatCounter, an open-source analytics service, with no cookies and nothing stored in your browser.",
+          "For each page view GoatCounter records the page path, the referrer, your browser and operating system, your screen width and your country. It does not store your IP address. The IP address is used only to work out the country and to tell repeat views apart for up to 8 hours, and it is held in memory only.",
+        ],
+      },
+      {
+        h: "Why and on what basis",
+        p: ["To understand how the site is used and improve it. The legal basis is my legitimate interest (Article 6(1)(f) GDPR). I don’t ask for consent because nothing is stored on your device and no persistent identifier is created. That is my reading of the rules, not a legal opinion."],
+      },
+      {
+        h: "Who receives the data",
+        p: [`GoatCounter, run by an individual in Ireland, processes the data on servers in Finland and Germany. Nothing is shared with third parties or transferred outside the EU. See its `, "privacy policy"],
+        link: true,
+      },
+      {
+        h: "How long I keep it",
+        p: ["Statistics are kept for up to 365 days and then deleted."],
+      },
+      {
+        h: "Hosting",
+        p: ["The site is hosted on GitHub Pages. GitHub may log visitors’ IP addresses as part of serving the pages. That is governed by GitHub’s own privacy statement."],
+      },
+      {
+        h: "Your rights",
+        p: ["You can ask for access, deletion or object to processing, and you can lodge a complaint with the Office for Personal Data Protection of the Slovak Republic (dataprotection.gov.sk). Providing data is voluntary and there is no automated decision-making. Because I can’t identify individual visitors in the statistics, there is usually nothing to look up, but get in touch and I’ll help."],
+      },
+    ],
+    updated: "Last updated: 15 November 2026",
+  },
+  sk: {
+    title: "Súkromie",
+    description: "Ako tento web meria návštevnosť a o aké údaje ide.",
+    sections: [
+      { h: "Kto je zodpovedný", p: [`${author}, fyzická osoba. Kontakt: `], mail: true },
+      {
+        h: "Čo meriam",
+        p: [
+          "Počítam návštevy, aby som videl, ktoré články sa čítajú. Používam GoatCounter, open-source službu na analytiku, bez cookies a bez ukladania čohokoľvek vo vašom prehliadači.",
+          "Pri každom zobrazení stránky GoatCounter zaznamená cestu stránky, referrer, prehliadač a operačný systém, šírku obrazovky a krajinu. IP adresu neukladá. IP adresa sa použije len na určenie krajiny a na rozlíšenie opakovaných zobrazení počas najviac 8 hodín a drží sa len v pamäti.",
+        ],
+      },
+      {
+        h: "Prečo a na akom právnom základe",
+        p: ["Aby som pochopil, ako sa web používa, a mohol ho zlepšovať. Právnym základom je môj oprávnený záujem (čl. 6 ods. 1 písm. f GDPR). Súhlas nežiadam, lebo sa vo vašom zariadení nič neukladá a nevzniká žiadny trvalý identifikátor. Je to môj výklad pravidiel, nie právne stanovisko."],
+      },
+      {
+        h: "Kto údaje dostáva",
+        p: [`GoatCounter, ktorý prevádzkuje fyzická osoba v Írsku, spracúva údaje na serveroch vo Fínsku a v Nemecku. Nič sa nezdieľa s tretími stranami ani neprenáša mimo EÚ. Pozri jeho `, "zásady ochrany súkromia"],
+        link: true,
+      },
+      {
+        h: "Ako dlho údaje uchovávam",
+        p: ["Štatistiky sa uchovávajú najviac 365 dní a potom sa zmažú."],
+      },
+      {
+        h: "Hosting",
+        p: ["Web beží na GitHub Pages. GitHub môže pri doručovaní stránok logovať IP adresy návštevníkov. Riadi sa to jeho vlastnými zásadami ochrany súkromia."],
+      },
+      {
+        h: "Vaše práva",
+        p: ["Môžete požiadať o prístup alebo vymazanie, namietať proti spracúvaniu a podať sťažnosť na Úrad na ochranu osobných údajov Slovenskej republiky (dataprotection.gov.sk). Poskytnutie údajov je dobrovoľné a nedochádza k automatizovanému rozhodovaniu. Keďže jednotlivých návštevníkov v štatistikách neviem identifikovať, zvyčajne nie je čo vyhľadať, ale ozvite sa a pomôžem."],
+      },
+    ],
+    updated: "Posledná aktualizácia: 15. novembra 2026",
+  },
+}[lang];
+---
+
+<Base lang={lang} title={`${copy.title} · ${author}`} description={copy.description} alternate={alternate}>
+  <TopBar lang={lang} alternate={alternate} />
+  <main id="main" class="legal">
+    <h1>{copy.title}</h1>
+    {
+      copy.sections.map((s) => (
+        <section>
+          <h2>{s.h}</h2>
+          {s.mail ? (
+            <p>{s.p[0]}<a href={mail}>{contactEmail}</a></p>
+          ) : s.link ? (
+            <p>{s.p[0]}<a href={policy}>{s.p[1]}</a>.</p>
+          ) : (
+            s.p.map((para) => <p>{para}</p>)
+          )}
+        </section>
+      ))
+    }
+    <p class="updated">{copy.updated}</p>
+  </main>
+  <Footer lang={lang} />
+</Base>

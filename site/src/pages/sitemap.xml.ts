@@ -1,10 +1,11 @@
-import { getArticles, href, type Lang } from "../site";
+import { getArticles, href, privacyHref, type Lang } from "../site";
 
 export async function GET() {
   const site = "https://filipmessa.github.io";
   const langs: Lang[] = ["en", "sk"];
   const paths = (await Promise.all(langs.map(async (lang) => [
     href(lang),
+    privacyHref(lang),
     ...(await getArticles(lang)).map((article) => href(lang, article.slug)),
   ]))).flat();
   const urls = paths.map((path) => `<url><loc>${new URL(path, site).href}</loc></url>`).join("");

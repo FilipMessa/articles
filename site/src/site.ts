@@ -4,6 +4,10 @@ export type Lang = "en" | "sk";
 
 export const author = "Filip Mešša";
 export const githubUrl = "https://github.com/FilipMessa";
+export const contactEmail = "messa.filip@gmail.com";
+
+// GoatCounter site code: the part before ".goatcounter.com". Leave empty to disable analytics.
+export const goatcounterCode = "filipmessa";
 
 export const ui = {
   en: {
@@ -27,6 +31,7 @@ export const ui = {
     question: "Is the context this change requires proportionate to what we’re changing?",
     questionSource: "The question behind",
     dateLocale: "en-US",
+    privacy: "Privacy",
   },
   sk: {
     htmlLang: "sk",
@@ -49,6 +54,7 @@ export const ui = {
     question: "Je kontext potrebný na túto zmenu primeraný tomu, čo meníme?",
     questionSource: "Otázka, na ktorej stojí článok",
     dateLocale: "sk-SK",
+    privacy: "Súkromie",
   },
 } as const;
 
@@ -95,6 +101,10 @@ export function href(lang: Lang, path = "") {
 
 export function aboutHref(lang: Lang) {
   return `${import.meta.env.BASE_URL}${lang === "sk" ? "sk/o-mne/" : "about/"}`;
+}
+
+export function privacyHref(lang: Lang) {
+  return `${import.meta.env.BASE_URL}${lang === "sk" ? "sk/sukromie/" : "privacy/"}`;
 }
 
 export async function getArticles(lang: Lang): Promise<Article[]> {
