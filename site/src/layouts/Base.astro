@@ -1,5 +1,10 @@
 ---
 import "../styles/global.css";
+// Preload the fonts used above the fold so they arrive with the HTML instead of after the CSS.
+import serifLatin from "../../node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2?url";
+import serifLatinExt from "../../node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-ext-400-normal.woff2?url";
+import sansLatin from "../../node_modules/@fontsource-variable/instrument-sans/files/instrument-sans-latin-wdth-normal.woff2?url";
+import sansLatinExt from "../../node_modules/@fontsource-variable/instrument-sans/files/instrument-sans-latin-ext-wdth-normal.woff2?url";
 import { goatcounterCode, ui, type Lang } from "../site";
 
 interface Props {
@@ -11,6 +16,7 @@ interface Props {
 }
 const { lang, title, description, alternate, article } = Astro.props;
 const t = ui[lang];
+const preloadFonts = [serifLatin, serifLatinExt, sansLatin, ...(lang === "sk" ? [sansLatinExt] : [])];
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const alternateUrl = alternate && new URL(alternate, Astro.site).href;
 const articleData = article && JSON.stringify({
@@ -30,6 +36,7 @@ const articleData = article && JSON.stringify({
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {preloadFonts.map((font) => <link rel="preload" href={font} as="font" type="font/woff2" crossorigin />)}
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
     <link rel="canonical" href={canonical} />
