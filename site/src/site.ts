@@ -54,6 +54,13 @@ export const ui = {
 
 // Newest first. The repo carries no per-article dates, so these come from its first commit.
 const meta: Record<string, { date: string; description: Record<Lang, string> }> = {
+  "claude-code-statusline": {
+    date: "2026-11-15",
+    description: {
+      en: "A custom status line for Claude Code, with a skill to install and adjust it.",
+      sk: "Vlastný statusline pre Claude Code a skill na jeho inštaláciu a úpravy.",
+    },
+  },
   "when-extracting-a-function-makes-sense": {
     date: "2026-11-14",
     description: {
@@ -69,7 +76,7 @@ const meta: Record<string, { date: string; description: Record<Lang, string> }> 
     },
   },
 };
-const order = ["how-i-think-about-good-code-architecture", "when-extracting-a-function-makes-sense"];
+const order = ["how-i-think-about-good-code-architecture", "when-extracting-a-function-makes-sense", "claude-code-statusline"];
 
 export type Article = {
   entry: CollectionEntry<"articles">;
