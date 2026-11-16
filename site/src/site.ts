@@ -16,8 +16,9 @@ export const ui = {
     about: "About",
     otherLang: "Slovensky",
     otherLangShort: "SK",
-    intro:
-      "Essays on code architecture: how I draw boundaries in TypeScript and React, so that a change needs only the code it touches.",
+    intro: "I build software. I write about the code, tools and decisions behind it.",
+    description:
+      "Essays by Filip Mešša on code architecture, TypeScript, React and working with AI tools: how I decide where to draw boundaries so a change needs only the code it touches.",
     minRead: (n: number) => `${n} min read`,
     contents: "Contents",
     nextArticle: "Next article",
@@ -39,8 +40,9 @@ export const ui = {
     about: "O mne",
     otherLang: "English",
     otherLangShort: "EN",
-    intro:
-      "Texty o architektúre kódu: ako kreslím hranice v TypeScripte a Reacte, aby zmena potrebovala len kód, ktorého sa týka.",
+    intro: "Vyvíjam softvér. Píšem o kóde, nástrojoch a rozhodnutiach, ktoré za ním stoja.",
+    description:
+      "Texty Filipa Meššu o architektúre kódu, TypeScripte, Reacte a práci s AI nástrojmi: ako rozhodujem, kde viesť hranice, aby zmena potrebovala len kód, ktorého sa týka.",
     minRead: (n: number) => `${n} min čítania`,
     contents: "Obsah",
     nextArticle: "Ďalší článok",

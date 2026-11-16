@@ -12,7 +12,7 @@ const t = ui[lang];
 const articles = await getArticles(lang);
 ---
 
-<Base lang={lang} title={author} description={t.intro} alternate={href(lang === "en" ? "sk" : "en")}>
+<Base lang={lang} title={author} description={t.description} alternate={href(lang === "en" ? "sk" : "en")}>
   <TopBar lang={lang} current="articles" alternate={href(lang === "en" ? "sk" : "en")} showMark={false} />
   <main id="main">
     <header class="home-head">

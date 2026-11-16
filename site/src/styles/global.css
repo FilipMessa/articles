@@ -213,7 +213,7 @@ a {
   white-space: nowrap;
   /* "Filip Mešša" is 3.48em wide at this tracking: on desktop the name spans
      about 60% of the content width, on phones all of it. */
-  font-size: calc((100vw - 2 * var(--margin)) * 0.175);
+  font-size: calc((100vw - 2 * var(--margin)) * 0.1);
 }
 
 /* Buttons */
@@ -921,7 +921,7 @@ a {
     font-size: 20px;
   }
   .wordmark {
-    font-size: calc((100vw - 2 * var(--margin)) * 0.2865);
+    font-size: calc((100vw - 2 * var(--margin)) * 0.17);
   }
   .section {
     margin-top: 56px;
