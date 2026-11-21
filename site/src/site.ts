@@ -4,6 +4,7 @@ export type Lang = "en" | "sk";
 
 export const author = "Filip Mešša";
 export const githubUrl = "https://github.com/FilipMessa";
+export const linkedinUrl = "https://www.linkedin.com/in/filipmessa";
 export const contactEmail = "messa.filip@gmail.com";
 
 // GoatCounter site code: the part before ".goatcounter.com". Leave empty to disable analytics.
