@@ -4,6 +4,7 @@ Technical articles on frontend code architecture, by Filip Mešša. Each article
 
 | Article | English | Slovenčina |
 | --- | --- | --- |
+| From Coding Back to Product Design | [Read](shopping-list/README.md) | [Čítať](shopping-list/README.sk.md) |
 | How I Think About Good Code Architecture | [Read](how-i-think-about-good-code-architecture/README.md) | [Čítať](how-i-think-about-good-code-architecture/README.sk.md) |
 | When Extracting a Function Makes Sense | [Read](when-extracting-a-function-makes-sense/README.md) | [Čítať](when-extracting-a-function-makes-sense/README.sk.md) |
 
