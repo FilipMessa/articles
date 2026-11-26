@@ -1103,3 +1103,11 @@ a {
   color: var(--muted);
   font-size: 15px;
 }
+
+/* Keep phone screenshots close to their original display size. */
+.shopping-list-article .prose img {
+  display: block;
+  width: min(100%, 360px);
+  height: auto;
+  margin-inline: auto;
+}
