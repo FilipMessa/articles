@@ -26,7 +26,7 @@ const alternate = href(lang === "en" ? "sk" : "en", article.slug);
 <Base lang={lang} title={`${article.title} · ${author}`} description={article.description} alternate={alternate} article={{ headline: article.title, date: article.date.toISOString().slice(0, 10) }}>
   <TopBar lang={lang} current="articles" alternate={alternate} />
   <main id="main">
-    <article>
+    <article class:list={[{ "shopping-list-article": article.slug === "shopping-list" }]}>
       <header class="article-head">
         <h1>{article.title}</h1>
         {article.description && <p class="dek">{article.description}</p>}
